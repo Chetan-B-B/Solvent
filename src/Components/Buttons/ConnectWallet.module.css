@@ -1,0 +1,7 @@
+.alignButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5rem;
+  padding: 2rem;
+}
