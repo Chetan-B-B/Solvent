@@ -49,7 +49,7 @@ const ConnectWallet = () => {
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
           <div className={classes.alignButtons}>
-            <WalletMultiButton />
+            <WalletMultiButton>Connect Wallet</WalletMultiButton>
             {<WalletDisconnectButton />}
           </div>
           {<UserWallet />}

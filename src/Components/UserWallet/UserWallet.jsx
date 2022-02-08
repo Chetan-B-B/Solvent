@@ -4,16 +4,39 @@ import * as web3 from "@solana/web3.js";
 import classes from "./UserWallet.module.css";
 import NFTS from "../NFTS/NFTS";
 import Loading from "../Loading/Loading";
+import { Buffer } from "buffer";
+
+const API_KEY_ID = "kt7q0NOCzg6zYOa";
+const API_SECRET_KEY = "aKhYx1enzYvbmpH";
+const HEADERS = {
+  APIKeyID: API_KEY_ID,
+  APISecretKey: API_SECRET_KEY,
+};
+
 function UserWallet(props) {
   const [balance, setBalance] = useState(0);
+  const [nfts, setNFTS] = useState([]);
   const context = useContext(WalletContext);
   console.log("info");
   console.log(context);
+  const pk = context.publicKey;
+
   if (context.publicKey !== null) {
     let connection = new web3.Connection(
       web3.clusterApiUrl("devnet"),
       "confirmed"
     );
+    //fetching user NFTS using blockchainapi
+    fetch(`https://api.blockchainapi.com/v1/solana/wallet/devnet/${pk}/nfts`, {
+      headers: HEADERS,
+    })
+      .then((acc) => {
+        return acc.json();
+      })
+      .then((data) => {
+        setNFTS(data.nfts_metadata);
+      })
+      .catch((err) => console.log(err));
 
     Promise.resolve(connection.getBalance(context.publicKey))
       .then(
@@ -32,7 +55,7 @@ function UserWallet(props) {
         </div>
       )}
       {!context.connected && <Loading />}
-      {context.connected && <NFTS />}
+      {context.connected && <NFTS nfts={nfts} />}
     </Fragment>
   );
 }

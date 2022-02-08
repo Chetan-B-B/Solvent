@@ -3,3 +3,7 @@
   flex-wrap: wrap;
   text-align: center;
 }
+
+.warning {
+  text-align: center;
+}
