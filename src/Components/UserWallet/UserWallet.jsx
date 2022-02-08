@@ -6,8 +6,8 @@ import NFTS from "../NFTS/NFTS";
 import Loading from "../Loading/Loading";
 import { Buffer } from "buffer";
 
-const API_KEY_ID = "kt7q0NOCzg6zYOa";
-const API_SECRET_KEY = "aKhYx1enzYvbmpH";
+const API_KEY_ID = "Your Api key";
+const API_SECRET_KEY = "Your screat key";
 const HEADERS = {
   APIKeyID: API_KEY_ID,
   APISecretKey: API_SECRET_KEY,
